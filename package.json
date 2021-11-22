@@ -1,0 +1,19 @@
+{
+  "name": "whereistsama",
+  "version": "0.0.1",
+  "description": "Minimalist page for finding out where Tsama is",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsamantanis/whereistsama.git"
+  },
+  "author": "Philippos Tsamantanis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tsamantanis/whereistsama/issues"
+  },
+  "homepage": "https://github.com/tsamantanis/whereistsama#readme"
+}
