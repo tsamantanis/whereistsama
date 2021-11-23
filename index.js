@@ -26,8 +26,7 @@ const visited = [
     'CH',
     'GB',
     'US',
-    'AE',
-    'ZA'
+    'AE'
 ]
 
 async function loadItenarary() {
@@ -48,28 +47,31 @@ async function loadItenarary() {
 async function loadGlobe() {
     const countries_data = await fetch('./globe_data.geojson')
     const countries = await countries_data.json()
-    const colors = countries.features.map(country => {
-        if (current.code === country.properties['ISO_A2']) return '#FE5F55'
-        if (visited.includes(country.properties['ISO_A2'])) return '#643CF5'
-        return '#262626'
-        
-        
+    const properties = countries.features.map(country => {
+        if (current.code === country.properties['ISO_A2']) return { color: '#f9655b', altitude: 0.001 }
+        if (visited.includes(country.properties['ISO_A2'])) return { color: '#c81d77', altitude: 0.001 }
+        return { color: '#3b86f7', altitude: 0.001 }
     })
 
-    let colorCount = 0;
+    let count = 0;
     const world = Globe({ animateIn: true })
         .backgroundColor("#ffffff")
         .height(window.innerHeight * 0.734)
         .globeImageUrl('./gradient.png')
         .hexPolygonsData(countries.features)
-        .hexPolygonResolution(3)
+        .hexPolygonAltitude(() => properties[count].altitude)
+        .hexPolygonResolution(4)
         .hexPolygonMargin(0.3)
-        .hexPolygonColor(() => colors[colorCount++])
+        .hexPolygonColor(() => properties[count++].color)
         .hexPolygonLabel(({ properties: d }) => `
             <b>${d.ADMIN}</b>
         `)
         (document.getElementById('globeViz'))
     world.controls().enableZoom = false
+    setTimeout(() => {
+        document.getElementById('loading').style.display = 'none'
+        document.getElementById('globeViz').style['margin-top'] = '0'
+    }, 2000)
 }
 
 loadItenarary()

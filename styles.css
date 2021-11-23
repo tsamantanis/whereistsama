@@ -15,8 +15,9 @@ h1 {
 
 #globeViz {
     width: 100%;
-    margin-top: 0;
+    margin-top: -100px;
     margin-bottom: 0;
+    z-index: 0;
 }
 
 canvas {
@@ -51,4 +52,53 @@ canvas {
 
 .bg-next {
     background: #FFCA28;
+}
+
+@keyframes bounce {
+    from, to  {
+    -webkit-transform-origin: bottom;
+            transform-origin: bottom;
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+    50% {
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+      -webkit-transform-origin: bottom;
+              transform-origin: bottom;
+      -webkit-animation-timing-function: ease-in;
+              animation-timing-function: ease-in;
+    }
+}
+
+
+.element-container {
+    z-index: 1;
+    margin-top: 10rem;
+    margin-bottom: -13.1rem;
+    -ms-flex: auto;
+        -webkit-box-flex: 1;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-align: center;
+        -webkit-box-align: center;
+            align-items: center;
+    -ms-flex-pack: center;
+        -webkit-box-pack: center;
+            justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+svg {
+    stroke: #fff;
+    max-width: 150px;
+    min-width: 150px;
+    min-height: 150px;
+}
+
+.bounce {
+    -webkit-animation: bounce 1s infinite;
+    animation: bounce 1s infinite;
 }
