@@ -14,15 +14,15 @@ const visited = [
     'TH',
     'AT',
     'DK',
-    'FR',
-    'DE',
+    'D',
+    'F',
     'GR',
     'HU',
-    'IT',
+    'I',
     'MA',
     'NL',
-    'PO',
-    'ES',
+    'PL',
+    'E',
     'CH',
     'GB',
     'US',
@@ -35,7 +35,6 @@ async function loadItenarary() {
     document.getElementById('next-date').innerHTML = "on " + next.date;
     const locations = document.getElementsByClassName('location-container')
     for (let i = 0; i < locations.length; i += 1) {
-        console.log(locations[i].children)
         if (locations[i].children['current-location']) {
             locations[i].classList.add('bg-current')
         } else if (locations[i].children['next-location']) {
@@ -48,8 +47,8 @@ async function loadGlobe() {
     const countries_data = await fetch('./globe_data.geojson')
     const countries = await countries_data.json()
     const properties = countries.features.map(country => {
-        if (current.code === country.properties['ISO_A2']) return { color: '#f9655b', altitude: 0.001 }
-        if (visited.includes(country.properties['ISO_A2'])) return { color: '#c81d77', altitude: 0.001 }
+        if (current.code === country.properties['POSTAL']) return { color: '#f9655b', altitude: 0.001 }
+        if (visited.includes(country.properties['POSTAL'])) return { color: '#c81d77', altitude: 0.001 }
         return { color: '#3b86f7', altitude: 0.001 }
     })
 
@@ -61,13 +60,12 @@ async function loadGlobe() {
         .hexPolygonsData(countries.features)
         .hexPolygonAltitude(() => properties[count].altitude)
         .hexPolygonResolution(4)
-        .hexPolygonMargin(0.3)
+        .hexPolygonMargin(0.2)
         .hexPolygonColor(() => properties[count++].color)
         .hexPolygonLabel(({ properties: d }) => `
             <b>${d.ADMIN}</b>
         `)
         (document.getElementById('globeViz'))
-    world.controls().enableZoom = false
     setTimeout(() => {
         document.getElementById('loading').style.display = 'none'
         document.getElementById('globeViz').style['margin-top'] = '0'
