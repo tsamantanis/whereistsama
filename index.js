@@ -1,12 +1,12 @@
 const current = {
-    city: 'Athens',
-    code: 'GR'
+    city: 'Cape Town',
+    code: 'ZA'
 }
 
 const next = {
-    city: 'Cape Town',
-    code: 'ZA',
-    date: 'November 24, 2021'
+    city: 'Athens',
+    code: 'GR',
+    date: 'February 6, 2022'
 }
 
 const visited = [
@@ -26,7 +26,8 @@ const visited = [
     'CH',
     'GB',
     'US',
-    'AE'
+    'AE',
+    'ZA'
 ]
 
 async function loadItenarary() {
