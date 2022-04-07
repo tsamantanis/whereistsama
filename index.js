@@ -1,12 +1,12 @@
 const current = {
-    city: 'Cape Town',
-    code: 'ZA'
+    city: 'Le Barcares',
+    code: 'F'
 }
 
 const next = {
     city: 'Athens',
     code: 'GR',
-    date: 'February 6, 2022'
+    date: 'April 12, 2022'
 }
 
 const visited = [
